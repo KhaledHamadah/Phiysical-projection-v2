@@ -7,6 +7,9 @@ public class EnviromentController : MonoBehaviour
 {
     // k in midle c right f left
 
+    public SpringySlider SS;
+    public Slider sss;
+
     public GameObject Thermometer;
     public GameObject Thermometer2;
     public GameObject Thermometer3;
@@ -41,6 +44,8 @@ public class EnviromentController : MonoBehaviour
         //ThermometerChild2 = Thermometer2.transform.FindChild("Slider");
         //ThermometerChild3 = Thermometer3.transform.FindChild("Slider");
 
+        SS = sss.GetComponent<SpringySlider>();
+
         slider = ThermometerChild.GetComponent<Slider>();
         slider2 = ThermometerChild2.GetComponent<Slider>();
         slider3 = ThermometerChild3.GetComponent<Slider>();
@@ -52,8 +57,22 @@ public class EnviromentController : MonoBehaviour
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if(SS.slider.value == 1)
+        {
+            C++;
+            f++;
+            k++;
+        }
+
+        if (SS.slider.value == -1)
+        {
+            C--;
+            f--;
+            k--;
+        }
+
         slider.value = C;
         slider2.value = f;
         slider3.value = k;
@@ -87,7 +106,7 @@ public class EnviromentController : MonoBehaviour
 
         text.text = ArabicFixer.Fix("œ—Ã… Õ—«—  «·„«¡"+ C + "c∞");
     }
-
+    /*
     public void RiseTemp() {
 
         C += raiseby;
@@ -99,5 +118,5 @@ public class EnviromentController : MonoBehaviour
         C -= raiseby;
         f -= raiseby;
         k -= raiseby;
-    }
+    }*/
 }
